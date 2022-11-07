@@ -5,7 +5,7 @@ const Header = () => {
 
     const menuItems =
         <>
-            <li><Link>Home</Link></li>
+            <li className='font-semibold'><Link>Home</Link></li>
         </>
 
     return (
@@ -30,7 +30,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                <button className="btn btn-outline btn-success">Success</button>
             </div>
         </div>
     );
