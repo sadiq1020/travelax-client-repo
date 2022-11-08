@@ -5,8 +5,10 @@ const Services = () => {
 
     const [services, setServices] = useState([]);
 
+    const count = 3;
+
     useEffect(() => {
-        fetch('services.json')
+        fetch(`http://localhost:5000/services?count=${count}`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -21,7 +23,7 @@ const Services = () => {
                 {
                     services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }
-            </div >
+            </div>
         </div >
     );
 };
