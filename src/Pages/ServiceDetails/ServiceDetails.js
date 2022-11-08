@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const ServiceDetails = () => {
-    const { title, img, description, price } = useLoaderData();
+    const { title, img, description, price, _id } = useLoaderData();
 
     return (
         <div>
@@ -19,7 +19,7 @@ const ServiceDetails = () => {
             </div>
             <div>
                 <h2 className='text-center'>Reviews</h2>
-                <Link to="/addreviews"><button className="btn btn-outline btn-accent">Add reviews</button></Link>
+                <Link to={`/addreviews/${_id}`}><button className="btn btn-outline btn-accent">Add reviews</button></Link>
             </div>
         </div>
     );
