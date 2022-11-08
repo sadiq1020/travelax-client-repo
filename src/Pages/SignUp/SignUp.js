@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider'
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -21,6 +26,8 @@ const SignUp = () => {
                 form.reset();
 
                 handleUpdateUerProfile(name, photoURL)
+
+                navigate(from, { replace: true })
             })
     }
 

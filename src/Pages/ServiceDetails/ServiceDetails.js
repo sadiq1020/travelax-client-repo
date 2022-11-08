@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import Reviews from '../Reviews/Reviews/Reviews';
 
 const ServiceDetails = () => {
     const { title, img, description, price, _id } = useLoaderData();
@@ -19,6 +20,7 @@ const ServiceDetails = () => {
             </div>
             <div>
                 <h2 className='text-center'>Reviews</h2>
+                <Reviews title={title}></Reviews>
                 <Link to={`/addreviews/${_id}`}><button className="btn btn-outline btn-accent">Add reviews</button></Link>
             </div>
         </div>

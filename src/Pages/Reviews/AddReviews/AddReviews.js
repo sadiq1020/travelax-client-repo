@@ -9,7 +9,7 @@ const AddReviews = () => {
     const handleReviews = event => {
         event.preventDefault();
         const form = event.target;
-        const name = form.name.value;
+        const name = user?.displayName || "Name not found";
         const email = user?.email || "Not registered";
         const photoURL = form.photoURL.value;
         const reviewMessage = form.review.value;
@@ -47,7 +47,7 @@ const AddReviews = () => {
     return (
         <form onSubmit={handleReviews} className='my-10 flex flex-col justify-center items-center text-white'>
             <p className='text-lg mb-2'>Name</p>
-            <input name="name" type="text" placeholder="Your name" className="input input-bordered input-accent input-lg w-full max-w-2xl mb-5" required />
+            <input name="name" type="text" placeholder="Your name" defaultValue={user?.displayName} readOnly className="input input-bordered input-accent input-lg w-full max-w-2xl mb-5" required />
             <p className='text-lg mb-2'>Email</p>
             <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} readOnly className="input input-bordered input-accent input-lg w-full max-w-2xl mb-5" />
             <p className='text-lg mb-2'>Photo URL</p>
