@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
     const email = user.email;
-
-
     const [reviews, setReviews] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${email}`)
@@ -36,19 +37,51 @@ const MyReviews = () => {
         }
     }
 
+    // update review
+    const handleEditReview = (event, id) => {
+        event.preventDefault();
+        const form = event.target;
+        // const reviewMessage = form.review.value;
+        // console.log(reviewMessage, id);
+
+        const editedReview = {
+            reviewMessage: form.review.value
+        }
+
+        fetch(`http://localhost:5000/reviews/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
+            },
+            body: JSON.stringify(editedReview)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    alert('Edited Successfully')
+                }
+                navigate("/")
+                // const remaining = reviews.filter(rev => rev._Id !== id);
+                // const edited = reviews.find(rev => rev._id === id);
+                // const newReviews = [...remaining, edited];
+                // setReviews(newReviews);
+
+            })
+
+
+
+    }
+
     return (
         <div>
             {
                 reviews.length > 0 ?
-                    reviews.map(review => <MyReviewCard key={review._id} review={review} handleDelete={handleDelete}></MyReviewCard>)
+                    reviews.map(review => <MyReviewCard key={review._id} review={review} handleDelete={handleDelete} handleEditReview={handleEditReview} ></MyReviewCard>)
                     :
                     <p className='h-screen flex justify-center items-center text-3xl text-red-700'>No reviews were added</p>
             }
-
-
-            {/* {
-                reviews.map(review => <MyReviewCard key={review._id} review={review} handleDelete={handleDelete}></MyReviewCard>)
-            } */}
         </div>
     );
 };
