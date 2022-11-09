@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReviewCard from './ReviewCard';
 
 const Reviews = ({ title }) => {
     // console.log(id);
@@ -16,7 +17,9 @@ const Reviews = ({ title }) => {
 
     return (
         <div>
-            {reviews.length}
+            {
+                reviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
+            }
         </div>
     );
 };

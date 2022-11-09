@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider'
+import GoogleLogIn from '../Login/GoogleLogIn';
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -80,7 +81,8 @@ const SignUp = () => {
                             <input className="btn btn-primary" type="submit" value="Sign Up" />
                         </div>
                     </form>
-                    <p className='text-center pb-5'>Already have an account? <Link className='text-teal-400' to="/login">Log In</Link>
+                    <GoogleLogIn></GoogleLogIn>
+                    <p className='text-center pb-5 mt-3'>Already have an account? <Link className='text-teal-400' to="/login">Log In</Link>
                     </p>
                 </div>
             </div>
