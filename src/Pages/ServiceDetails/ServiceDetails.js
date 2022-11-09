@@ -26,7 +26,6 @@ const ServiceDetails = () => {
                     }
                     <Link className='mt-5' to={`/addreviews/${_id}`}><button className="btn btn-outline btn-accent">Add reviews</button></Link>
                 </div>
-
             </div>
         </div>
     );

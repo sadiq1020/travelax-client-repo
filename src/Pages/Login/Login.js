@@ -17,12 +17,11 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        // console.log(email, password);
 
         login(email, password)
             .then(result => {
                 const user = result.user;
-
+                console.log(user);
                 navigate(from, { replace: true })
             })
             .catch(err => console.error(err));
