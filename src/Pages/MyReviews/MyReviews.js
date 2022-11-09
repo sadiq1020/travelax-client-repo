@@ -4,15 +4,24 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
 
 const MyReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const email = user.email;
     const [reviews, setReviews] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/reviews?email=${email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('travelax-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logOut();
+                }
+                return res.json()
+            })
             .then(data => {
                 setReviews(data)
             })
@@ -61,12 +70,15 @@ const MyReviews = () => {
                 console.log(data);
                 if (data.acknowledged) {
                     alert('Edited Successfully')
+
+                    // const remaining = reviews.filter(rev => rev._Id !== id);
+                    // const edited = reviews.find(rev => rev._id === id);
+                    // const newReviews = [...remaining, edited];
+                    // setReviews(newReviews);
+                    navigate("/")
                 }
-                navigate("/")
-                // const remaining = reviews.filter(rev => rev._Id !== id);
-                // const edited = reviews.find(rev => rev._id === id);
-                // const newReviews = [...remaining, edited];
-                // setReviews(newReviews);
+
+
 
             })
 
