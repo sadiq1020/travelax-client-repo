@@ -39,8 +39,16 @@ const MyReviews = () => {
     return (
         <div>
             {
-                reviews.map(review => <MyReviewCard key={review._id} review={review} handleDelete={handleDelete}></MyReviewCard>)
+                reviews.length > 0 ?
+                    reviews.map(review => <MyReviewCard key={review._id} review={review} handleDelete={handleDelete}></MyReviewCard>)
+                    :
+                    <p className='h-screen flex justify-center items-center text-3xl text-red-700'>No reviews were added</p>
             }
+
+
+            {/* {
+                reviews.map(review => <MyReviewCard key={review._id} review={review} handleDelete={handleDelete}></MyReviewCard>)
+            } */}
         </div>
     );
 };
