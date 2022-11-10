@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddServices = () => {
 
@@ -29,7 +30,8 @@ const AddServices = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    alert('Service Submitted Successfully')
+                    // alert('Service Submitted Successfully')
+                    toast("Service Added Successfully");
                     form.reset();
                 }
             })
@@ -50,7 +52,7 @@ const AddServices = () => {
                 <button className="btn btn-outline btn-primary">Submit</button>
             </form>
 
-
+            <ToastContainer />
         </div>
     );
 };

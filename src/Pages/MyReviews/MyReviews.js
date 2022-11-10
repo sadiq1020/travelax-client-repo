@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
 import MyReviewCard from './MyReviewCard';
 
 const MyReviews = () => {
@@ -18,14 +19,14 @@ const MyReviews = () => {
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
-                    logOut();
+                    return logOut();
                 }
                 return res.json()
             })
             .then(data => {
                 setReviews(data)
             })
-    }, [email])
+    }, [email, logOut])
 
 
     // delete review
@@ -34,11 +35,19 @@ const MyReviews = () => {
         if (proceed) {
             fetch(`http://localhost:5000/reviews/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    // authorization: `Bearer ${localStorage.getItem('travelax-token')}`
+                }
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        return logOut();
+                    }
+                    return res.json()
+                })
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        alert('Deleted successfully!')
+                        toast("Deleted successfully!");
                         const remaining = reviews.filter(rev => rev._id !== id);
                         setReviews(remaining);
                     }
@@ -50,8 +59,6 @@ const MyReviews = () => {
     const handleEditReview = (event, id) => {
         event.preventDefault();
         const form = event.target;
-        // const reviewMessage = form.review.value;
-        // console.log(reviewMessage, id);
 
         const editedReview = {
             reviewMessage: form.review.value
@@ -77,13 +84,7 @@ const MyReviews = () => {
                     // setReviews(newReviews);
                     navigate("/")
                 }
-
-
-
             })
-
-
-
     }
 
     return (
@@ -94,6 +95,7 @@ const MyReviews = () => {
                     :
                     <p className='h-screen flex justify-center items-center text-3xl text-red-700'>No reviews were added</p>
             }
+            <ToastContainer />
         </div>
     );
 };

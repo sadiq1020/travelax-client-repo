@@ -4,13 +4,23 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import GoogleLogIn from './GoogleLogIn';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, loading } = useContext(AuthContext);
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
 
+    // if (loading) {
+
+    //     <div class="flex justify-center items-center">
+    //         <div class="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0" role="status">
+    //             <span class="visually-hidden">Loading...</span>
+    //         </div>
+    //     </div>
+
+
+    // }
 
     const handleLogin = event => {
         event.preventDefault();
@@ -40,10 +50,8 @@ const Login = () => {
                         console.log(data);
 
                         localStorage.setItem('travelax-token', data.token);
-                        // navigate(from, { replace: true })
                     })
-
-
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err));
     }

@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
     // sign out [Module 69-2]
     const logOut = () => {
-        // localStorage.removeItem('genius-token')
+        localStorage.removeItem('travelax-token')
         return signOut(auth);
     }
 
