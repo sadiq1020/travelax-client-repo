@@ -1,15 +1,35 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider'
+import useTitle from '../../hooks/useTitle';
+import { Oval } from 'react-loader-spinner';
 import GoogleLogIn from '../Login/GoogleLogIn';
 
 const SignUp = () => {
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, loading } = useContext(AuthContext);
+
+    useTitle('Sign up');
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
+
+    if (loading) {
+        return (
+            <div className='flex justify-center'>
+                <Oval
+                    height="80"
+                    width="80"
+                    radius="9"
+                    color="#00FFFF"
+                    ariaLabel="loading"
+                    wrapperStyle
+                    wrapperClass
+                />
+            </div>
+        )
+    }
 
     const handleSignUp = event => {
         event.preventDefault();

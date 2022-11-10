@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import MyReviewCard from './MyReviewCard';
+import useTitle from '../../hooks/useTitle';
 
 const MyReviews = () => {
     const { user, logOut } = useContext(AuthContext);
+
+    useTitle('My reviews')
+
     const email = user.email;
     const [reviews, setReviews] = useState([]);
 

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import logo from '../../../assets/images/logo.png'
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -43,7 +44,11 @@ const Header = () => {
                         <li className='font-semibold'><Link to="/login">Log in</Link></li>
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl">Travelax</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">
+
+                    <img className='w-14' src={logo} alt="" />
+                    Travelax
+                </Link>
                 {/* <p>Travel Relax Everywhere</p> */}
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -80,7 +85,7 @@ const Header = () => {
                         <button onClick={handleLogOut} className='btn btn-outline btn-success'>Sign out</button>
                     </>
                     :
-                    <button className='btn btn-outline btn-primary'><Link to="/login">Log in</Link></button>
+                    <Link to="/login"><button className='btn btn-outline btn-primary'>Log in</button></Link>
                 }
             </div>
         </div>

@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import Reviews from '../Reviews/Reviews/Reviews';
 
 const ServiceDetails = () => {
+
+    useTitle('Service Detail')
+
     const { user } = useContext(AuthContext);
     const { title, img, description, price, _id } = useLoaderData();
 
@@ -19,7 +23,9 @@ const ServiceDetails = () => {
             </div>
             <div>
                 <h2 className='text-center text-4xl text-success'>Reviews</h2>
+
                 <Reviews title={title}></Reviews>
+
                 <div className='my-10 flex flex-col justify-center items-center text-success'>
                     {
                         user?.email ? <p>Tap the button to add your review</p> : <p>Please login to add your review</p>

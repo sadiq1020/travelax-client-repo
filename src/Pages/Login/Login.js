@@ -1,26 +1,34 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
+import { Oval } from 'react-loader-spinner';
 import GoogleLogIn from './GoogleLogIn';
 
 const Login = () => {
     const { login, loading } = useContext(AuthContext);
+    useTitle('Login');
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
 
-    // if (loading) {
-
-    //     <div class="flex justify-center items-center">
-    //         <div class="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0" role="status">
-    //             <span class="visually-hidden">Loading...</span>
-    //         </div>
-    //     </div>
-
-
-    // }
+    if (loading) {
+        return (
+            <div className='flex justify-center'>
+                <Oval
+                    height="80"
+                    width="80"
+                    radius="9"
+                    color="#00FFFF"
+                    ariaLabel="loading"
+                    wrapperStyle
+                    wrapperClass
+                />
+            </div>
+        )
+    }
 
     const handleLogin = event => {
         event.preventDefault();
