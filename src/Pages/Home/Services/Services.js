@@ -8,7 +8,7 @@ const Services = () => {
     const count = 3;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services?count=${count}`)
+        fetch(`https://assignment-eleven-server-one.vercel.app/services?count=${count}`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

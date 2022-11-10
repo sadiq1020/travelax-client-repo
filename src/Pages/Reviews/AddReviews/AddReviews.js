@@ -30,11 +30,10 @@ const AddReviews = () => {
         }
 
         // --- sending reviews data to server
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://assignment-eleven-server-one.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify(review)
         })

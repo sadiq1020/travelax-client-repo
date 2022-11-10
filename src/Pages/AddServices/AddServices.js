@@ -23,7 +23,7 @@ const AddServices = () => {
         }
 
         // --- sending service data to server
-        fetch('http://localhost:5000/services', {
+        fetch('https://assignment-eleven-server-one.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

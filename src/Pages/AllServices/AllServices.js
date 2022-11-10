@@ -10,7 +10,7 @@ const AllServices = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://assignment-eleven-server-one.vercel.app/services')
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {

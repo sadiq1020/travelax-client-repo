@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
 
 const Reviews = ({ title }) => {
-    // console.log(id);
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?title=${title}`)
+        fetch(`https://assignment-eleven-server-one.vercel.app/reviews?title=${title}`)
 
             .then(res => res.json())
             .then(data => {

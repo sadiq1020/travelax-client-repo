@@ -16,7 +16,7 @@ const MyReviews = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${email}`, {
+        fetch(`https://assignment-eleven-server-one.vercel.app/reviews?email=${email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('travelax-token')}`
             }
@@ -37,11 +37,8 @@ const MyReviews = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?')
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://assignment-eleven-server-one.vercel.app/reviews/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    // authorization: `Bearer ${localStorage.getItem('travelax-token')}`
-                }
             })
                 .then(res => {
                     if (res.status === 401 || res.status === 403) {
@@ -68,11 +65,10 @@ const MyReviews = () => {
             reviewMessage: form.review.value
         }
 
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://assignment-eleven-server-one.vercel.app/reviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify(editedReview)
         })
@@ -81,11 +77,6 @@ const MyReviews = () => {
                 console.log(data);
                 if (data.acknowledged) {
                     alert('Edited Successfully')
-
-                    // const remaining = reviews.filter(rev => rev._Id !== id);
-                    // const edited = reviews.find(rev => rev._id === id);
-                    // const newReviews = [...remaining, edited];
-                    // setReviews(newReviews);
                     navigate("/")
                 }
             })
