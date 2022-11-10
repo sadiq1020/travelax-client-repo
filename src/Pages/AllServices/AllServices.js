@@ -1,37 +1,38 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import React, { useState, useEffect } from 'react';
 import useTitle from '../../hooks/useTitle';
 import { Oval } from 'react-loader-spinner';
 import ServiceCard from '../Home/Services/ServiceCard';
 
 const AllServices = () => {
-    const { loading } = useContext(AuthContext);
-
-    // if (loading) {
-
-    //     return (<div className='flex justify-center'>
-    //         <Oval
-    //             height="80"
-    //             width="80"
-    //             radius="9"
-    //             color="#00FFFF"
-    //             ariaLabel="loading"
-    //             wrapperStyle
-    //             wrapperClass
-    //         />
-    //     </div>)
-
-    // }
 
     useTitle('All Services')
     const [allServices, setAllServices] = useState([])
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
-            .then(data => setAllServices(data))
+            .then(data => {
+                if (data.length > 0) {
+                    setLoading(false)
+                    setAllServices(data)
+                }
+            })
     }, [])
 
+    if (loading) {
+        return (<div className='flex justify-center'>
+            <Oval
+                height="80"
+                width="80"
+                radius="9"
+                color="#00FFFF"
+                ariaLabel="loading"
+                wrapperStyle
+                wrapperClass
+            />
+        </div>)
+    }
 
     return (
         <div>

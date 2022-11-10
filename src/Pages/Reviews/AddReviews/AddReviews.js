@@ -50,7 +50,7 @@ const AddReviews = () => {
     }
 
     return (
-        <div>
+        <div className='my-10'>
             <form onSubmit={handleReviews} className='my-10 flex flex-col justify-center items-center text-white'>
                 <p className='text-lg mb-2'>Name</p>
                 <input name="name" type="text" placeholder="Your name" defaultValue={user?.displayName} readOnly className="input input-bordered input-accent input-lg w-full max-w-2xl mb-5" required />
@@ -62,7 +62,9 @@ const AddReviews = () => {
                 <textarea name="review" className="textarea textarea-success w-full max-w-2xl h-40 mb-5" placeholder="Write your review here" required></textarea>
                 <button className="btn btn-outline btn-primary">Submit</button>
             </form>
-            <Link to="/allservices"><button className="btn btn-outline btn-success">Go back</button></Link>
+            <div className='flex justify-end'>
+                <Link to="/allservices"><button className="btn btn-outline btn-success mr-10">Go back</button></Link>
+            </div>
         </div>
     );
 };

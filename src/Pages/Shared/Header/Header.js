@@ -28,20 +28,6 @@ const Header = () => {
                             </>
                         }
                         <li><Link to="/blog">Blogs</Link></li>
-                        {/* <li tabIndex={0}>
-                            <Link className="justify-between">
-                                Services
-                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                            </Link>
-                            <ul className="p-2 bg-gray-700">
-                                <li><Link>Submenu 1</Link></li>
-                                <li><Link>Submenu 2</Link></li>
-                                <li><Link>Submenu 3</Link></li>
-                                <li><Link>Submenu 4</Link></li>
-                                <li><Link>Submenu 5</Link></li>
-                                <li><Link>Submenu 6</Link></li>
-                            </ul>
-                        </li> */}
                         <li className='font-semibold'><Link to="/login">Log in</Link></li>
                     </ul>
                 </div>
@@ -50,7 +36,6 @@ const Header = () => {
                     <img className='w-14' src={logo} alt="" />
                     Travelax <span className='text-sm ml-2'>Travel Relax</span>
                 </Link>
-                {/* <p>Travel Relax Everywhere</p> */}
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -68,7 +53,8 @@ const Header = () => {
             <div className="navbar-end">
                 {user?.email ?
                     <>
-                        <button onClick={handleLogOut} className='btn btn-outline btn-success'>Sign out</button>
+                        <p className='mr-5'>{user.displayName}</p>
+                        <button onClick={handleLogOut} className='btn btn-outline btn-primary'>Sign out</button>
                     </>
                     :
                     <Link to="/login"><button className='btn btn-outline btn-primary'>Log in</button></Link>
