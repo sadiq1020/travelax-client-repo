@@ -19,7 +19,6 @@ const PrivateRoute = ({ children }) => {
                 wrapperClass
             />
         </div>)
-        // <h2 className='text-5xl'>Loading...</h2>
     }
 
     if (user) {

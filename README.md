@@ -1,5 +1,5 @@
 ## Website name: Travelax [Assignment-11]
-## Live site link: 
+## Live site link: https://travelax-bd.web.app/
 
 ## Features and Functionality
 1. Dynamic route and Private route
